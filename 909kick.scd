@@ -1,45 +1,15 @@
-Server.local.options.device ="ASIO4ALL"
 
-
-
+// Fill buffer for waveshaping.
 (
-// in order to be turned into a wavetable,
-
-// the signal must be half buffer size plus one
-
 x = Signal.sineFill(513, [0.5, 0.2, 0.3, 0.0, 0.2]);
-
 x.plot;
-
 b = Buffer.alloc(s, 1024, 1);
-
 )
 
 b.sendCollection(x.asWavetableNoWrap);
 
 
-
-
-
-(
-// in order to be turned into a wavetable,
-
-// the signal must be half buffer size plus one
-
-x = Signal.sineFill(513, [0.1, 0.9]);
-
-x.plot;
-
-b = Buffer.alloc(s, 1024, 1);
-
-)
-
-b.sendCollection(x.asWavetableNoWrap);
-
-
-
-
-
+// Kick synth definition
 (
 SynthDef(\kick, { | startPitch = 100, lpf1 = 100, lpf2 = 200, lpf3 = 200, gate = 1 |
 	var sig1, adsr1;
@@ -64,6 +34,8 @@ SynthDef(\kick, { | startPitch = 100, lpf1 = 100, lpf2 = 200, lpf3 = 200, gate =
 	}
 ).store;
 )
+
+// A pattern with some swing.
 (
 p = Pbind(
 	\instrument, \kick,
