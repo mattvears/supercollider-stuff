@@ -1,0 +1,1 @@
+Server.local.options.device = "ASIO4ALL"
