@@ -39,6 +39,6 @@ SynthDef(\kick, { | startPitch = 100, lpf1 = 100, lpf2 = 200, lpf3 = 200, gate =
 (
 p = Pbind(
 	\instrument, \kick,
-	\dur, Pseq([1.05,0.95],inf)
+	\dur, Pseq([1,1,1,0.5,0.5],inf)
 ).play(quant: 1)
 )

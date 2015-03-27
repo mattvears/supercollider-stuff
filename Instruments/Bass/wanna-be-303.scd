@@ -1,5 +1,5 @@
 (
-SynthDef(\bass, { | freq = 440, gate = 1, lpf = 1000, res = 0.8, width = 0.05, amp = 1 |
+SynthDef(\bass, { | freq = 440, gate = 1, lpf = 1000, res = 0.8, width = 0.05, amp = 1, vol = 0.5 |
 	var sig, env;
 	var sig2, env2;
 
@@ -16,7 +16,7 @@ SynthDef(\bass, { | freq = 440, gate = 1, lpf = 1000, res = 0.8, width = 0.05, a
 	sig2 = RLPF.ar(sig2, lpf, res);
 
 
-	Out.ar(0, [sig, sig2]);
+	Out.ar(0, [sig * vol, sig2 * vol]);
 
 }).store
 )
@@ -26,7 +26,7 @@ SynthDef(\bass, { | freq = 440, gate = 1, lpf = 1000, res = 0.8, width = 0.05, a
 p = Pbind(
 	\instrument, \bass,
 	\scale, #[0, 2, 3, 4, 5, 6, 8],
-    \root, -5,
+    \root, -24,
 	\degree, Ppatlace([Pseq(#[rest, 5, rest, 3, -0.1, 0.3], inf), Pn(1, inf), Pwhite(1, 5, inf)], inf),
 	\lpf, Pwhite(100, 2000, inf),
 	\res, Pwhite(0.0, 0.9, inf),
